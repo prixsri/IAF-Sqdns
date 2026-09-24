@@ -1,12 +1,19 @@
-export type FleetCategory = 'kinetic' | 'multiplier' | 'rotary' | 'unmanned';
+export type FleetCategory = "kinetic" | "multiplier" | "rotary" | "unmanned";
 
 export interface SquadronInfo {
   number: string;
   name: string;
   base: string;
-  command: 'Western' | 'Eastern' | 'South Western' | 'Central' | 'Southern' | 'Training' | 'Maintenance';
+  command:
+    | "Western"
+    | "Eastern"
+    | "South Western"
+    | "Central"
+    | "Southern"
+    | "Training"
+    | "Maintenance";
   crest?: string;
-  status: 'active' | 'converting' | 'number-plated' | 'projected';
+  status: "active" | "converting" | "number-plated" | "projected";
 }
 
 export interface AircraftSpec {
@@ -14,7 +21,18 @@ export interface AircraftSpec {
   name: string;
   category: FleetCategory;
   role: string;
-  generation: 'Gen 4' | 'Gen 4.5' | 'Gen 4.5+' | 'Gen 5 Stealth' | 'AEW&C' | 'Tanker' | 'Attack Heli' | 'Utility Heli' | 'MALE UAV' | 'Stealth UCAV' | 'Loitering Munition';
+  generation:
+    | "Gen 4"
+    | "Gen 4.5"
+    | "Gen 4.5+"
+    | "Gen 5 Stealth"
+    | "AEW&C"
+    | "Tanker"
+    | "Attack Heli"
+    | "Utility Heli"
+    | "MALE UAV"
+    | "Stealth UCAV"
+    | "Loitering Munition";
   manufacturer: string;
   origin: string;
   firstInducted: number;
@@ -36,10 +54,10 @@ export interface EngineDeliveryLog {
   period: string; // e.g. "2024-Q1", "2025-11"
   year: number;
   month: number;
-  contract: '83-Order (99 Engines)' | '97-Order (115+ Engines)' | 'F414-Mk2';
+  contract: "83-Order (99 Engines)" | "97-Order (115+ Engines)" | "F414-Mk2";
   committed: number;
   actualOrProjected: number;
-  status: 'delivered' | 'delayed' | 'scheduled';
+  status: "delivered" | "delayed" | "scheduled";
   notes: string;
 }
 
@@ -60,7 +78,7 @@ export interface SimulationConfig {
   ghatakEnabled: boolean;
   ghatakStartYear: number; // 2030 (16 units/yr, 60 total)
   su30NashikAdditions: boolean; // 12 units in 2027
-  retirementPace: 'normal' | 'accelerated' | 'slep_extended';
+  retirementPace: "normal" | "accelerated" | "slep_extended";
   targetSquadrons: number; // 42 sanctioned
 }
 
@@ -80,6 +98,7 @@ export interface SimulationYearData {
   deficit: number;
   airframes: YearFleetBreakdown;
   squadrons: YearSquadronBreakdown;
+  netDelta: number;
   inductions: {
     aircraftId: string;
     name: string;

@@ -1,4 +1,3 @@
----
 
 # Instructions: IAF Squadron Strength & Fleet Simulation Web Application
 
@@ -41,8 +40,6 @@ The simulation engine must dynamically calculate active squadron numbers and tot
 * First Mk2 induction out of the 120 planned units begins in **September 2030**.
 * **Line Capacity Trade-off:** When Tejas Mk2 enters production, the Tejas Mk1 production line scales down to **16 units/year**.
 
-
-
 ### B. Rafale Procurement (114 MRFA)
 
 * **Deal Milestone:** Assumed signed before **March 2027**.
@@ -55,8 +52,6 @@ The simulation engine must dynamically calculate active squadron numbers and tot
 * **Production Schedule:**
 * **40 AMCA Mk1 LSP** production starts in **2032** at **16 units/year**.
 * Remaining **120 units** production initiates in **2035**.
-
-
 
 ### D. Ghatak UCAV & Other Additions
 

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Sliders, Terminal } from 'lucide-react';
-import { SimulationConfig } from '../types/fleet';
-import { SCENARIO_PRESETS } from '../utils/simulationEngine';
+import React from "react";
+import { Sliders, Terminal } from "lucide-react";
+import { SimulationConfig } from "../types/fleet";
+import { SCENARIO_PRESETS } from "../utils/simulationEngine";
 
 interface HeaderProps {
   currentTab: string;
@@ -21,17 +21,17 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenConfigModal,
 }) => {
   const tabs = [
-    { id: 'simulation', label: 'Fleet Simulator', icon: '📊' },
-    { id: 'baseline', label: 'Baseline ORBAT', icon: '🗂️' },
-    { id: 'engine', label: 'GE Engine Pipeline', icon: '⚙️' },
-    { id: 'wargame', label: 'Scenario Comparison', icon: '🎯' },
-    { id: 'retirements', label: 'Phase-Out Matrix', icon: '📉' },
-    { id: 'data', label: 'Data & Report', icon: '📄' },
+    { id: "simulation", label: "Fleet Simulator", icon: "📊" },
+    { id: "baseline", label: "Baseline ORBAT", icon: "🗂️" },
+    { id: "engine", label: "GE Engine Pipeline", icon: "⚙️" },
+    { id: "wargame", label: "Scenario Comparison", icon: "🎯" },
+    { id: "retirements", label: "Phase-Out Matrix", icon: "📉" },
+    { id: "data", label: "Data & Report", icon: "📄" },
   ];
 
   const handleSelectPreset = (presetId: string) => {
     setSelectedPresetId(presetId);
-    const preset = SCENARIO_PRESETS.find(p => p.id === presetId);
+    const preset = SCENARIO_PRESETS.find((p) => p.id === presetId);
     if (preset) {
       setConfig({ ...preset.config });
     }
@@ -57,12 +57,13 @@ export const Header: React.FC<HeaderProps> = ({
                 <h1 className="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
                   <span>IAF FLEET & SQUADRON STRENGTH SIMULATOR</span>
                   <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800/80">
-                    STRAT-SIM v2.4
+                    STRAT-SIM v1.0
                   </span>
                 </h1>
               </div>
               <p className="text-xs text-slate-400">
-                Indian Air Force Force-Structure Dynamics, GE Engine Constraints & 42-Squadron Roadmap (2025–2040)
+                Indian Air Force Force-Structure Dynamics, GE Engine Constraints
+                & 42-Squadron Roadmap (2025–2040)
               </p>
             </div>
           </div>
@@ -108,8 +109,8 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => setCurrentTab(tab.id)}
                 className={`flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap ${
                   isActive
-                    ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                    ? "bg-cyan-500/15 text-cyan-300 border border-cyan-500/40 shadow-sm"
+                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
                 }`}
               >
                 <span>{tab.icon}</span>
