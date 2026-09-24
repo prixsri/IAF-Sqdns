@@ -105,3 +105,18 @@ npm run preview -- --port 5173
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+## 🌐 Continuous Integration & Deployment (CI/CD)
+
+The repository includes automated CI/CD via GitHub Actions ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)):
+
+**CI (Pull Requests & Pushes):** Automatically installs dependencies (`npm ci`), runs TypeScript compilation (`tsc -b`), and verifies the production build (`vite build`).
+**CD (Deployment to GitHub Pages):** On push to `master` (or manual trigger), builds the production assets and deploys directly to GitHub Pages.
+
+### Enabling GitHub Pages in Repository Settings
+
+1. Navigate to your repository on GitHub: `Settings` > `Pages`.
+2. Under **Build and deployment** > **Source**, select **GitHub Actions**.
+3. Pushes to `master` will now automatically build and publish the live site at `https://<username>.github.io/IAF-Sqdns/`.
