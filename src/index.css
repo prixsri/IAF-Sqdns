@@ -2,33 +2,398 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   IAF STRATEGIC FORCE PLANNER — PRODUCTION EXECUTIVE DESIGN SYSTEM
+   Curated warm military-tactical palette, refined typography, and craft details.
+   Replaces AI-generated neon tropes with authentic aerospace command aesthetics.
+   ========================================================================== */
+
+:root {
+  /* Warm Base Canvas & Surfaces */
+  --bg-canvas: #0e0d0b;
+  --bg-surface-primary: #171512;
+  --bg-surface-elevated: #1f1c18;
+  --bg-surface-inset: #12100e;
+  --bg-surface-chip: #27231e;
+
+  /* Warm Borders & Dividers */
+  --border-subtle: rgba(215, 175, 125, 0.12);
+  --border-medium: rgba(215, 175, 125, 0.22);
+  --border-prominent: rgba(245, 158, 11, 0.35);
+
+  /* Warm Typography Hierarchy */
+  --text-primary: #faf6ee;
+  --text-secondary: #ded3c2;
+  --text-muted: #a69a88;
+  --text-faint: #786d5e;
+
+  /* Strategic Accents (Warm Saffron, Gold, Bronze & Desert Camo) */
+  --accent-saffron: #d97706;
+  --accent-gold: #f59e0b;
+  --accent-gold-light: #fbbf24;
+  --accent-olive: #65a30d;
+  --accent-terracotta: #dc2626;
+  --accent-bronze: #d97746;
+}
+
 @layer base {
-  body {
-    background-color: #070b14;
-    color: #f1f5f9;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
   }
 
-  /* Custom scrollbar for tactical dashboard */
+  body {
+    background-color: var(--bg-canvas) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+
+  /* Production Scrollbar: Warm Dark Bronze & Sand */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
   }
   ::-webkit-scrollbar-track {
-    background: #0b1120;
+    background: #12100e;
   }
   ::-webkit-scrollbar-thumb {
-    background: #1e293b;
-    border-radius: 3px;
+    background: #2b2620;
+    border-radius: 4px;
+    border: 1px solid rgba(215, 175, 120, 0.08);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: #453c32;
+  }
+
+  /* Precision Tabular Numerics for Scrubber, Metrics & Timelines */
+  .font-mono,
+  table,
+  input[type="range"],
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1, "zero" 1;
   }
 }
 
+/* ==========================================================================
+   WARM ACCENT OVERRIDES (Replacing AI-generated electric cyan & neon blues)
+   ========================================================================== */
+
+/* Selections */
+::selection,
+.selection\:bg-cyan-500 {
+  background-color: #d97706 !important;
+  color: #ffffff !important;
+}
+
+/* Canvas & Base Container */
+.bg-\[\#070b14\],
+body.bg-\[\#070b14\] {
+  background-color: #0e0d0b !important;
+}
+
+/* Slate Background Tones -> Warm Tactical Charcoal & Dark Espresso */
+.bg-slate-950 {
+  background-color: #12100e !important;
+}
+.bg-slate-950\/95 {
+  background-color: rgba(18, 16, 14, 0.96) !important;
+}
+.bg-slate-950\/90 {
+  background-color: rgba(18, 16, 14, 0.92) !important;
+}
+.bg-slate-950\/80 {
+  background-color: rgba(18, 16, 14, 0.85) !important;
+}
+.bg-slate-950\/70 {
+  background-color: rgba(18, 16, 14, 0.75) !important;
+}
+.bg-slate-950\/30 {
+  background-color: rgba(18, 16, 14, 0.35) !important;
+}
+
+.bg-slate-900 {
+  background-color: #171512 !important;
+}
+.bg-slate-900\/90 {
+  background-color: rgba(23, 21, 18, 0.92) !important;
+}
+.bg-slate-900\/80 {
+  background-color: rgba(23, 21, 18, 0.85) !important;
+}
+.bg-slate-900\/70 {
+  background-color: rgba(23, 21, 18, 0.75) !important;
+}
+
+.bg-slate-800 {
+  background-color: #221e1a !important;
+}
+.bg-slate-800\/80 {
+  background-color: rgba(34, 30, 26, 0.85) !important;
+}
+.bg-slate-800\/60 {
+  background-color: rgba(34, 30, 26, 0.65) !important;
+}
+.bg-slate-800\/50 {
+  background-color: rgba(34, 30, 26, 0.55) !important;
+}
+.bg-slate-800\/40 {
+  background-color: rgba(34, 30, 26, 0.45) !important;
+}
+.bg-slate-700 {
+  background-color: #2d2722 !important;
+}
+
+.hover\:bg-slate-800:hover {
+  background-color: #28241f !important;
+}
+.hover\:bg-slate-700:hover {
+  background-color: #352e28 !important;
+}
+.hover\:bg-slate-800\/60:hover {
+  background-color: rgba(45, 39, 33, 0.75) !important;
+}
+.hover\:bg-slate-800\/50:hover {
+  background-color: rgba(45, 39, 33, 0.65) !important;
+}
+.hover\:bg-slate-800\/40:hover {
+  background-color: rgba(45, 39, 33, 0.55) !important;
+}
+
+/* Warm Hairline Borders */
+.border-slate-800,
+.border-slate-800\/80,
+.border-slate-800\/60 {
+  border-color: rgba(215, 175, 125, 0.12) !important;
+}
+.border-slate-700,
+.border-slate-700\/80 {
+  border-color: rgba(215, 175, 125, 0.20) !important;
+}
+.hover\:border-slate-700:hover {
+  border-color: rgba(215, 175, 125, 0.35) !important;
+}
+.divide-slate-800\/60 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(215, 175, 125, 0.10) !important;
+}
+
+/* Warm Typography Scale */
+.text-slate-100 {
+  color: #faf6ee !important;
+}
+.text-slate-200 {
+  color: #ede4d5 !important;
+}
+.text-slate-300 {
+  color: #ded4c3 !important;
+}
+.text-slate-400 {
+  color: #a69a88 !important;
+}
+.text-slate-500 {
+  color: #7c7060 !important;
+}
+.text-slate-600 {
+  color: #5a5043 !important;
+}
+
+/* Replacing Cyan With Warm Tactical Saffron / Amber / Gold */
+.text-cyan-400 {
+  color: #f59e0b !important;
+}
+.text-cyan-300 {
+  color: #fbbf24 !important;
+}
+.text-cyan-500 {
+  color: #d97706 !important;
+}
+.hover\:text-cyan-300:hover {
+  color: #fde68a !important;
+}
+.group:hover .group-hover\:text-cyan-400 {
+  color: #fbbf24 !important;
+}
+
+.bg-cyan-950,
+.bg-cyan-950\/80,
+.bg-cyan-950\/60 {
+  background-color: rgba(217, 119, 6, 0.16) !important;
+}
+
+.border-cyan-800,
+.border-cyan-800\/80,
+.border-cyan-500,
+.border-cyan-500\/50,
+.border-cyan-500\/40,
+.border-cyan-500\/30 {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+.hover\:border-cyan-500\/50:hover {
+  border-color: rgba(245, 158, 11, 0.55) !important;
+}
+
+.bg-cyan-500,
+.bg-cyan-600 {
+  background-color: #d97706 !important;
+}
+.hover\:bg-cyan-500:hover {
+  background-color: #f59e0b !important;
+}
+.bg-cyan-500\/15,
+.bg-cyan-500\/20,
+.bg-cyan-600\/20,
+.bg-cyan-600\/30 {
+  background-color: rgba(217, 119, 6, 0.18) !important;
+}
+.hover\:bg-cyan-500\/30:hover,
+.hover\:bg-cyan-600\/30:hover {
+  background-color: rgba(245, 158, 11, 0.28) !important;
+}
+
+.focus\:border-cyan-500:focus {
+  border-color: #d97706 !important;
+}
+.focus\:ring-cyan-500\/50:focus {
+  --tw-ring-color: rgba(245, 158, 11, 0.5) !important;
+}
+.ring-cyan-500\/20 {
+  --tw-ring-color: rgba(245, 158, 11, 0.2) !important;
+}
+.ring-cyan-500\/50 {
+  --tw-ring-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+.accent-cyan-400 {
+  accent-color: #d97706 !important;
+}
+
+/* Replacing AI Neon Purple With Warm Stealth Bronze / Copper */
+.text-purple-400 {
+  color: #e08a5b !important;
+}
+.text-purple-300 {
+  color: #f3a67d !important;
+}
+.bg-purple-500 {
+  background-color: #c86a3a !important;
+}
+.bg-purple-950 {
+  background-color: rgba(168, 85, 40, 0.18) !important;
+}
+.border-purple-800,
+.border-purple-500 {
+  border-color: rgba(217, 119, 70, 0.4) !important;
+}
+
+/* Warm Olive / Muted Military Green */
+.text-emerald-400 {
+  color: #84cc16 !important;
+}
+.text-emerald-300 {
+  color: #a3e635 !important;
+}
+.bg-emerald-500 {
+  background-color: #65a30d !important;
+}
+.bg-emerald-950,
+.bg-emerald-950\/80,
+.bg-emerald-950\/70 {
+  background-color: rgba(77, 124, 15, 0.22) !important;
+}
+.border-emerald-800,
+.border-emerald-800\/80,
+.border-emerald-500\/50 {
+  border-color: rgba(101, 163, 13, 0.35) !important;
+}
+.hover\:bg-emerald-600\/30:hover {
+  background-color: rgba(101, 163, 13, 0.3) !important;
+}
+
+/* Warm Terracotta & Burnt Red Alert */
+.text-red-400 {
+  color: #f87171 !important;
+}
+.text-red-300 {
+  color: #fca5a5 !important;
+}
+.bg-red-500 {
+  background-color: #dc2626 !important;
+}
+.bg-red-950,
+.bg-red-950\/80,
+.bg-red-950\/70,
+.bg-red-950\/40 {
+  background-color: rgba(185, 28, 28, 0.22) !important;
+}
+.border-red-800,
+.border-red-900\/60,
+.border-red-900\/50 {
+  border-color: rgba(220, 38, 38, 0.35) !important;
+}
+
+/* Amber / Golden Status Highlights */
+.text-amber-400 {
+  color: #fbbf24 !important;
+}
+.text-amber-300 {
+  color: #fde68a !important;
+}
+.bg-amber-500 {
+  background-color: #f59e0b !important;
+}
+.bg-amber-950 {
+  background-color: rgba(217, 119, 6, 0.22) !important;
+}
+.border-amber-800,
+.border-amber-500\/50 {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+.hover\:bg-amber-500\/30:hover {
+  background-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Ambient Warm Shadow Overrides */
+.shadow-cyan-950\/20,
+.shadow-cyan-950\/30 {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(245, 158, 11, 0.2) !important;
+}
+
+/* ==========================================================================
+   PRODUCTION BACKGROUND & DEPTH (Replacing AI grid/glow gimmicks)
+   ========================================================================== */
+
+/* Authentic Warm Command Deck Background */
+.grid-bg {
+  background-color: #0e0d0b;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.07) 0%, transparent 60%),
+    linear-gradient(to right, rgba(215, 175, 125, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(215, 175, 125, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 28px 28px, 28px 28px;
+  background-attachment: fixed;
+}
+
+/* Tactile Multi-Layered Shadows (No cheap neon blur halos) */
+.glow-cyan {
+  box-shadow: 0 4px 16px -2px rgba(217, 119, 6, 0.22), 0 0 0 1px rgba(245, 158, 11, 0.25) !important;
+}
+
+.glow-amber {
+  box-shadow: 0 4px 16px -2px rgba(245, 158, 11, 0.25), 0 0 0 1px rgba(245, 158, 11, 0.32) !important;
+}
+
+.glow-red {
+  box-shadow: 0 4px 16px -2px rgba(220, 38, 38, 0.25), 0 0 0 1px rgba(220, 38, 38, 0.32) !important;
+}
+
+/* Restrained Warm Radar Sweep */
 .radar-sweep {
-  background: conic-gradient(from 0deg at 50% 50%, rgba(6, 182, 212, 0.25) 0deg, rgba(6, 182, 212, 0) 60deg);
-  animation: radar 4s linear infinite;
+  background: conic-gradient(from 0deg at 50% 50%, rgba(217, 119, 6, 0.22) 0deg, rgba(217, 119, 6, 0) 55deg);
+  animation: radar 8s linear infinite;
 }
 
 @keyframes radar {
@@ -40,21 +405,301 @@
   }
 }
 
-.glow-cyan {
-  box-shadow: 0 0 15px -3px rgba(6, 182, 212, 0.3);
+/* Card Elevation & Refinement */
+.bg-slate-900\/90,
+.bg-slate-900 {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45), 0 8px 24px -4px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(230, 200, 150, 0.05);
 }
 
-.glow-amber {
-  box-shadow: 0 0 15px -3px rgba(245, 158, 11, 0.3);
+/* Header Gradient Line */
+.via-cyan-500\/60 {
+  --tw-gradient-stops: var(--tw-gradient-from, transparent), rgba(245, 158, 11, 0.65), var(--tw-gradient-to, transparent) !important;
 }
 
-.glow-red {
-  box-shadow: 0 0 15px -3px rgba(239, 68, 68, 0.3);
+/* ==========================================================================
+   FORM CONTROLS, BUTTONS & RANGE SCRUBBER
+   ========================================================================== */
+
+/* Warm Range Slider Input */
+input[type="range"] {
+  height: 8px !important;
+  background: #201c18 !important;
+  border: 1px solid rgba(215, 175, 125, 0.2) !important;
+  border-radius: 9999px !important;
 }
 
-.grid-bg {
-  background-size: 30px 30px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  border: 2px solid #14120f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(245, 158, 11, 0.4);
+  cursor: pointer;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.12s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 0 0 3px rgba(245, 158, 11, 0.6);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  border: 2px solid #14120f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(245, 158, 11, 0.4);
+  cursor: pointer;
+}
+
+/* Checkbox Toggle Switch in Config Modal */
+input[type="checkbox"]:checked ~ div {
+  background-color: #d97706 !important;
+}
+
+/* Focus Visibility & Accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #f59e0b !important;
+  outline-offset: 2px !important;
+}
+
+/* Smooth Interactive Micro-Transitions */
+button,
+a,
+select,
+input {
+  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease, transform 0.12s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Tables Craft: Subtle Warm Row Highlights */
+tbody tr {
+  transition: background-color 0.12s ease;
+}
+
+tbody tr:hover {
+  background-color: rgba(215, 175, 125, 0.04) !important;
+}
+
+/* ==========================================================================
+   RECHARTS SVG CHART OVERRIDES (Cohesive Warm Military Aesthetic)
+   Scoped to .recharts-surface so the official IAF roundel is preserved.
+   ========================================================================== */
+
+/* Grid Lines & Axes */
+.recharts-cartesian-grid line,
+.recharts-surface line[stroke="#1e293b"] {
+  stroke: rgba(215, 175, 125, 0.09) !important;
+}
+
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line,
+.recharts-surface line[stroke="#64748b"] {
+  stroke: rgba(215, 175, 125, 0.18) !important;
+}
+
+.recharts-text,
+.recharts-cartesian-axis-tick text {
+  fill: #a69a88 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+}
+
+.recharts-legend-item-text {
+  color: #ded3c2 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+}
+
+.recharts-tooltip-cursor {
+  stroke: rgba(245, 158, 11, 0.4) !important;
+}
+
+/* SVG Chart Gradients: Warm Amber / Saffron Fill */
+#sqdnArea stop:first-child {
+  stop-color: #d97706 !important;
+  stop-opacity: 0.45 !important;
+}
+#sqdnArea stop:last-child {
+  stop-color: #d97706 !important;
+  stop-opacity: 0.0 !important;
+}
+
+/* SVG Lines & Curves */
+.recharts-surface path.recharts-curve[stroke="#06b6d4"],
+.recharts-surface path[stroke="#06b6d4"] {
+  stroke: #f59e0b !important;
+}
+
+.recharts-surface path.recharts-curve[stroke="#38bdf8"],
+.recharts-surface path[stroke="#38bdf8"] {
+  stroke: #fbbf24 !important;
+}
+
+/* 5th Gen Stealth Curve (replacing purple with bronze/copper) */
+.recharts-surface path[stroke="#a855f7"] {
+  stroke: #d97746 !important;
+  fill: #d97746 !important;
+}
+.recharts-surface rect[fill="#a855f7"] {
+  fill: #d97746 !important;
+}
+
+/* Tejas Mk2 & MWF Curves */
+.recharts-surface path[stroke="#0ea5e9"] {
+  stroke: #d97706 !important;
+  fill: #d97706 !important;
+}
+.recharts-surface path[stroke="#0284c7"] {
+  stroke: #b45309 !important;
+  fill: #b45309 !important;
+}
+.recharts-surface path[stroke="#3b82f6"] {
+  stroke: #92400e !important;
+  fill: #92400e !important;
+}
+
+/* Operational & Critical Reference Lines */
+.recharts-surface line[stroke="#10b981"] {
+  stroke: #84cc16 !important;
+}
+.recharts-surface text[fill="#10b981"] {
+  fill: #84cc16 !important;
+}
+.recharts-surface line[stroke="#ef4444"] {
+  stroke: #dc2626 !important;
+}
+.recharts-surface text[fill="#ef4444"] {
+  fill: #f87171 !important;
+}
+.recharts-surface line[stroke="#38bdf8"] {
+  stroke: #fbbf24 !important;
+}
+.recharts-surface text[fill="#38bdf8"] {
+  fill: #fbbf24 !important;
+}
+
+/* Bar Chart Colors */
+.recharts-surface rect[fill="#06b6d4"] {
+  fill: #f59e0b !important;
+}
+.recharts-surface rect[fill="#64748b"] {
+  fill: #786d5e !important;
+}
+
+/* Dots */
+.recharts-surface circle[stroke="#06b6d4"] {
+  stroke: #f59e0b !important;
+}
+.recharts-surface circle[stroke="#10b981"] {
+  stroke: #84cc16 !important;
+}
+
+/* ==========================================================================
+   PRODUCTION PRINT STYLESHEET (@media print)
+   Executive briefing clean output for paper & PDF export.
+   ========================================================================== */
+
+@media print {
+  body,
+  .grid-bg,
+  #root,
+  main {
+    background: #ffffff !important;
+    color: #111827 !important;
+    background-image: none !important;
+  }
+
+  /* Hide interactive controls, scrubbers, modals */
+  header,
+  .fixed,
+  button,
+  select,
+  input,
+  input[type="range"],
+  footer {
+    display: none !important;
+  }
+
+  /* High contrast readable cards */
+  .bg-slate-900,
+  .bg-slate-950,
+  .bg-slate-900\/90 {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+    color: #111827 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Clean print tables */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    color: #111827 !important;
+  }
+
+  th,
+  td {
+    border: 1px solid #d1d5db !important;
+    color: #111827 !important;
+    padding: 6px 10px !important;
+  }
+
+  th {
+    background: #f3f4f6 !important;
+    font-weight: 700 !important;
+  }
+
+  .text-white,
+  .text-slate-100,
+  .text-slate-200,
+  .text-slate-300,
+  .text-slate-400,
+  .text-slate-500 {
+    color: #1f2937 !important;
+  }
+
+  .text-cyan-400,
+  .text-cyan-300,
+  .text-amber-400 {
+    color: #92400e !important;
+  }
+
+  .text-emerald-400 {
+    color: #15803d !important;
+  }
+
+  .text-red-400 {
+    color: #b91c1c !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .radar-sweep {
+    animation: none !important;
+  }
 }
