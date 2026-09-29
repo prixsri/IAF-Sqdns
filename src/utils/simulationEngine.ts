@@ -5,7 +5,7 @@ import {
 } from "../types/fleet";
 
 export const DEFAULT_CONFIG: SimulationConfig = {
-  mrfaRafaleEnabled: true,
+  mrfaRafaleEnabled: false,
   mrfaSignedYear: 2027,
   mrfaFlyawayDeliveryYear: 2030,
   mrfaMakeInIndiaRate: 12, // units per year
@@ -13,12 +13,12 @@ export const DEFAULT_CONFIG: SimulationConfig = {
   geEngineAnnualSupply: 24, // 2 engines/month
   halMk1aCapacity: 24, // baseline 24, scalable to 30
   tejasMk2Enabled: true,
-  tejasMk2StartYear: 2030, // Sept 2030
+  tejasMk2StartYear: 2032, // modeled planning case; no firm induction date is public
   tejasMk2ProductionRate: 16,
   amcaEnabled: true,
-  amcaMk1StartYear: 2032, // 16/yr, 40 total
-  amcaMk2StartYear: 2035, // 120 total
-  ghatakEnabled: true,
+  amcaMk1StartYear: 2035, // modeled projection; quantity and induction date are unconfirmed
+  amcaMk2StartYear: 2038, // modeled projection; quantity and induction date are unconfirmed
+  ghatakEnabled: false,
   ghatakStartYear: 2030, // 16/yr, 60 total
   su30NashikAdditions: true, // 12 units in 2027
   retirementPace: "normal",
@@ -32,9 +32,10 @@ export const SCENARIO_PRESETS: ScenarioPreset[] = [
     tagline: "MoD & IAF Master Roadmap",
     badge: "Standard Case",
     description:
-      "Rafale 114 MRFA signed in 2027, GE deliveries on committed 24/yr rate, Tejas Mk2 inducting Sept 2030, and AMCA Mk1 LSP starting 2032.",
+      "Modeled case including a proposed 114-aircraft MRFA package, reported GE cadence, and unconfirmed Mk2/AMCA planning dates.",
     config: {
       ...DEFAULT_CONFIG,
+      mrfaRafaleEnabled: false,
     },
   },
   {
@@ -49,9 +50,9 @@ export const SCENARIO_PRESETS: ScenarioPreset[] = [
       mrfaRafaleEnabled: false,
       geEngineDelayMonths: 18,
       halMk1aCapacity: 16,
-      tejasMk2StartYear: 2032,
-      amcaMk1StartYear: 2035,
-      amcaMk2StartYear: 2037,
+      tejasMk2StartYear: 2035,
+      amcaMk1StartYear: 2038,
+      amcaMk2StartYear: 2040,
       retirementPace: "normal",
     },
   },
@@ -61,7 +62,7 @@ export const SCENARIO_PRESETS: ScenarioPreset[] = [
     tagline: "HAL 30/yr Surge, No Foreign MRFA",
     badge: "Indigenous Surge",
     description:
-      "HAL scales Tejas Mk1A line to 30 jets/yr, on-time F414 deal, accelerated Tejas Mk2 and AMCA, bypassing imported MRFA in favor of domestic fighters.",
+      "What-if case: HAL scales output, domestic programmes accelerate, and the proposed MRFA package is not purchased.",
     config: {
       ...DEFAULT_CONFIG,
       mrfaRafaleEnabled: false,
@@ -72,6 +73,7 @@ export const SCENARIO_PRESETS: ScenarioPreset[] = [
       tejasMk2ProductionRate: 20,
       amcaMk1StartYear: 2032,
       amcaMk2StartYear: 2035,
+      ghatakEnabled: true,
     },
   },
   {
@@ -80,7 +82,7 @@ export const SCENARIO_PRESETS: ScenarioPreset[] = [
     tagline: "114 MRFA + HAL 30/yr + Service Extension",
     badge: "Fastest Recovery",
     description:
-      "Aggressive procurement: Rafale MRFA on track, HAL runs at 30 jets/yr, and legacy fleet receives life-extensions (SLEP) to prevent premature squadron depletion.",
+      "What-if case: proposed MRFA package, HAL surge output, and service-life extensions are all assumed to proceed.",
     config: {
       ...DEFAULT_CONFIG,
       mrfaRafaleEnabled: true,
@@ -117,6 +119,7 @@ export function runFleetSimulation(
 
   // Cumulative tracking
   let cumMk1aProduced = 0;
+  let cumulativeMk1aLineCapacity = 0;
   const maxMk1aOrder = 180; // 83 + 97
   let cumF404EnginesReceived = 8; // already delivered before 2026
   let cumMk2Delivered = 0;
@@ -174,11 +177,14 @@ export function runFleetSimulation(
     if (config.tejasMk2Enabled && year >= config.tejasMk2StartYear) {
       effectiveMk1aLineCapacity = 16;
     }
+    if (year >= 2026) {
+      cumulativeMk1aLineCapacity += effectiveMk1aLineCapacity;
+    }
 
     let mk1aInductedThisYear = 0;
     if (year >= 2026 && cumMk1aProduced < maxMk1aOrder) {
       if (year === 2026) {
-        // Scaling up starts December 2026 (first batch of 4-6 planes)
+        // December 2026 is a modeled forecast, not a confirmed IAF handover date.
         const initialBatch = delayYears > 0.5 ? 2 : 4;
         mk1aInductedThisYear = Math.min(
           initialBatch,
@@ -220,11 +226,11 @@ export function runFleetSimulation(
     // Uninstalled airframes waiting for engines (gliders)
     const potentialAirframesWithoutEngineConstraint = Math.min(
       maxMk1aOrder,
-      (year - 2025) * effectiveMk1aLineCapacity,
+      cumulativeMk1aLineCapacity,
     );
     const glidersCount = Math.max(
       0,
-      Math.min(potentialAirframesWithoutEngineConstraint - cumMk1aProduced, 16),
+      potentialAirframesWithoutEngineConstraint - cumMk1aProduced,
     );
 
     // --- SU-30MKI ADDITIONS (Nashik line 12 units in 2027) ---
@@ -243,7 +249,7 @@ export function runFleetSimulation(
     // --- TEJAS MK2 (MWF) ---
     if (year === 2027) {
       milestonesThisYear.push(
-        "Tejas Mk2 prototype rollout & GE F-414-IN engine deal finalization (2 engines/month)",
+        "Tejas Mk2 prototype first-flight target remains a planning milestone; GE F-414 production arrangement is unconfirmed",
       );
     }
     if (
@@ -253,7 +259,8 @@ export function runFleetSimulation(
     ) {
       let mk2InductedThisYear = 0;
       if (year === config.tejasMk2StartYear) {
-        // Starts September 2030 (4-6 units in first partial year)
+        // The current public target is a September 2027 prototype first flight;
+        // series induction remains unconfirmed, so this is a configurable scenario.
         mk2InductedThisYear = 4;
         milestonesThisYear.push(
           "First Tejas Mk2 Medium Weight Fighter (MWF) serial induction",
@@ -275,15 +282,15 @@ export function runFleetSimulation(
       }
     }
 
-    // --- RAFALE 114 MRFA ---
+    // --- RAFALE 114 MRFA (proposal / what-if scenario, not a signed contract) ---
     if (config.mrfaRafaleEnabled) {
       if (year === config.mrfaSignedYear) {
         milestonesThisYear.push(
-          "114 Multi-Role Fighter Aircraft (MRFA) Rafale deal contract signed",
+          "114-aircraft Rafale MRFA proposal / negotiation milestone (contract not publicly confirmed)",
         );
       }
       if (year === config.mrfaFlyawayDeliveryYear) {
-        // First lot of 18 jets in fly-away condition in 2030
+        // The 18-jet fly-away lot and local assembly cadence are modeled assumptions.
         const flyaway = 18;
         cumRafaleMRFADelivered += flyaway;
         rafaleMRFA += flyaway;
@@ -317,11 +324,11 @@ export function runFleetSimulation(
     // --- AMCA PROGRAM ---
     if (year === 2026) {
       milestonesThisYear.push(
-        "AMCA DCPP decision finalized (October 2026, 84-month development clock)",
+        "AMCA programme approved in March 2024; September 2028 first-flight target remains the current public milestone",
       );
     }
     if (config.amcaEnabled) {
-      // 40 AMCA Mk1 LSP starts in 2032 at 16 units/year
+      // AMCA production quantities and induction dates remain uncontracted.
       if (year >= config.amcaMk1StartYear && cumAmcaMk1Delivered < maxAmcaMk1) {
         const amcaMk1Batch = Math.min(16, maxAmcaMk1 - cumAmcaMk1Delivered);
         cumAmcaMk1Delivered += amcaMk1Batch;
@@ -338,7 +345,7 @@ export function runFleetSimulation(
         }
       }
 
-      // Remaining 120 units production initiates in 2035
+      // This remains a what-if production projection.
       if (year >= config.amcaMk2StartYear && cumAmcaMk2Delivered < maxAmcaMk2) {
         const amcaMk2Batch = Math.min(16, maxAmcaMk2 - cumAmcaMk2Delivered);
         cumAmcaMk2Delivered += amcaMk2Batch;
@@ -356,7 +363,7 @@ export function runFleetSimulation(
       }
     }
 
-    // --- GHATAK UCAV ---
+    // --- GHATAK UCAV (technology demonstrator / acquisition-intent scenario) ---
     if (
       config.ghatakEnabled &&
       year >= config.ghatakStartYear &&
@@ -590,8 +597,11 @@ export function runFleetSimulation(
         f404DeliveredCum: cumF404EnginesReceived,
         f404AirframesBuiltCum: cumMk1aProduced,
         f404GlidersAwaitingEngine: glidersCount,
-        f414DeliveredCum: Math.min(140, Math.max(0, (year - 2027) * 24)),
-        f414AirframesBuiltCum: cumMk2Delivered + cumAmcaMk1Delivered,
+        f414DeliveredCum: Math.min(
+          maxMk2Order,
+          Math.max(0, (year - 2027) * 24),
+        ),
+        f414AirframesBuiltCum: cumMk2Delivered,
       },
       generationShare: {
         gen4,

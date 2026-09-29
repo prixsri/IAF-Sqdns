@@ -21,20 +21,22 @@ export const TimelineSlider: React.FC<TimelineSliderProps> = ({
 
   // Auto-play effect
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setInterval> | undefined;
     if (isPlaying) {
       timer = setInterval(() => {
-        setCurrentYear(prev => {
-          if (prev >= maxYear) {
-            setIsPlaying(false);
-            return maxYear;
-          }
-          return prev + 1;
-        });
+        setCurrentYear(prev => Math.min(maxYear, prev + 1));
       }, 1400 / playbackSpeed);
     }
-    return () => clearInterval(timer);
+    return () => {
+      if (timer) clearInterval(timer);
+    };
   }, [isPlaying, playbackSpeed, setCurrentYear]);
+
+  useEffect(() => {
+    if (currentYear >= maxYear) {
+      setIsPlaying(false);
+    }
+  }, [currentYear]);
 
   const currentYearData = simulationData.find(d => d.year === currentYear);
 

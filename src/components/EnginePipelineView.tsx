@@ -210,7 +210,7 @@ export const EnginePipelineView: React.FC<EnginePipelineViewProps> = ({
           <AlertCircle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <span className="font-bold text-amber-300">Production Line Capacity Trade-off Rule: </span>
-            When the Tejas Mk2 Medium Weight Fighter enters production (September 2030), one HAL assembly line re-tools for the heavier Mk2 fuselage. Consequently, Tejas Mk1-A line capacity throttles down to a sustained <span className="font-mono font-bold text-white">16 units/year</span>.
+            In the modeled Mk2 transition case, one HAL assembly line re-tools for the heavier Mk2 fuselage when Mk2 production begins. Consequently, Tejas Mk1-A line capacity throttles down to a sustained <span className="font-mono font-bold text-white">16 units/year</span>. The production start date is not publicly confirmed.
           </div>
         </div>
       </div>
@@ -327,7 +327,7 @@ export const EnginePipelineView: React.FC<EnginePipelineViewProps> = ({
 
             <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-300 leading-relaxed">
               <p>
-                <strong>March 2027 Milestone:</strong> Bilateral commercial agreement between GE Aerospace and HAL includes 11 critical engine manufacturing technologies, enabling domestic hot-section blisk and single-crystal blade co-production in India.
+                <strong>Programme status:</strong> GE and HAL signed a 2023 MoU covering potential F414 production in India. The production agreement, technology-transfer scope, and delivery schedule remain unconfirmed in public sources.
               </p>
             </div>
           </div>

@@ -48,6 +48,11 @@ export interface AircraftSpec {
   squadrons: SquadronInfo[];
   description: string;
   silhouette: string;
+  inventoryStatus?: "confirmed" | "estimate" | "undisclosed" | "future-allocation";
+  countConfidence?: "high" | "medium" | "low";
+  sourceDate?: string;
+  sourceUrl?: string;
+  sourceNote?: string;
 }
 
 export interface EngineDeliveryLog {
@@ -70,14 +75,14 @@ export interface SimulationConfig {
   geEngineAnnualSupply: number; // 24/yr baseline (2/mo)
   halMk1aCapacity: number; // 24/yr baseline, scalable to 30
   tejasMk2Enabled: boolean;
-  tejasMk2StartYear: number; // 2030 (Sept)
+  tejasMk2StartYear: number; // modeled planning case; public first-flight target is Sept 2027
   tejasMk2ProductionRate: number; // 16 to 24 units/yr
   amcaEnabled: boolean;
-  amcaMk1StartYear: number; // 2032 (16 units/yr, 40 total)
-  amcaMk2StartYear: number; // 2035 (120 total)
+  amcaMk1StartYear: number; // modeled production case; quantities and dates unconfirmed
+  amcaMk2StartYear: number; // modeled production case; quantities and dates unconfirmed
   ghatakEnabled: boolean;
-  ghatakStartYear: number; // 2030 (16 units/yr, 60 total)
-  su30NashikAdditions: boolean; // 12 units in 2027
+  ghatakStartYear: number; // modeled case; quantity and induction date unconfirmed
+  su30NashikAdditions: boolean; // 12 contracted aircraft, delivery targeted FY 2027-28 through 2029
   retirementPace: "normal" | "accelerated" | "slep_extended";
   targetSquadrons: number; // 42 sanctioned
 }

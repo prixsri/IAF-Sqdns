@@ -177,7 +177,7 @@ export const RetirementMatrixView: React.FC<RetirementMatrixViewProps> = ({ simu
                 <span className="text-amber-400 font-mono font-bold">2032–2036</span>
               </div>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                3 active squadrons at Gwalior will phase down starting 2032 as spare parts from Dassault line closures become scarce.
+                Public reporting has discussed a gradual phase-down in the 2030s, but no fixed retirement date is confirmed; the 2032–2036 band is a modeled planning assumption.
               </p>
             </div>
           </div>
@@ -194,40 +194,40 @@ export const RetirementMatrixView: React.FC<RetirementMatrixViewProps> = ({ simu
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-white font-bold">Tejas Mk1-A (180 Total Order)</span>
-                <span className="text-emerald-400 font-mono font-bold">Dec 2026–2035</span>
+                <span className="text-emerald-400 font-mono font-bold">Forecast: 2026 onward</span>
               </div>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                Ramps from Dec 2026 across Bengaluru (Line 1 & 2) and Nashik (Line 3). When Mk2 enters production, Mk1A rate shifts to 16/yr.
+                December 2026 is a modeled forecast; September 2026 reporting said original-order handovers remained delayed. When a Mk2 production case is enabled, the model shifts Mk1A capacity to 16/yr.
               </p>
             </div>
 
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-white font-bold">Tejas Mk2 (120 Planned Units)</span>
-                <span className="text-cyan-400 font-mono font-bold">Sept 2030 Onward</span>
+                <span className="text-cyan-400 font-mono font-bold">Prototype target: Sept 2027</span>
               </div>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                Rollout scheduled March 2027; first series induction Sept 2030 powered by GE F-414-IN turbofans (2/month supply).
+                Public reporting targets a September 2027 prototype first flight. Series production, induction, and F-414 delivery dates remain unconfirmed.
               </p>
             </div>
 
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-white font-bold">114 Rafale MRFA (Make-in-India)</span>
-                <span className="text-cyan-400 font-mono font-bold">2030 (Fly-away) / 2031+</span>
+                <span className="text-cyan-400 font-mono font-bold">Proposal / schedule unconfirmed</span>
               </div>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                18 fly-away fighters delivered in 2030 followed by 96 domestically assembled jets at 12 units/yr (contract signed pre-March 2027).
+                The 114-aircraft package remains proposed/under negotiation in public reporting. Fly-away and Indian-assembly quantities are modeled what-if assumptions.
               </p>
             </div>
 
             <div className="bg-slate-950 p-3 rounded-lg border border-slate-800">
               <div className="flex justify-between items-center mb-1">
                 <span className="text-white font-bold">AMCA Mk1 LSP & Mk2 Full Production</span>
-                <span className="text-purple-400 font-mono font-bold">2032 (Mk1) / 2035 (Mk2)</span>
+                <span className="text-purple-400 font-mono font-bold">First flight target: Sept 2028</span>
               </div>
               <p className="text-slate-400 text-[11px] leading-relaxed">
-                40 Mk1 Lead-in Series Production at 16 units/yr starting 2032; 120 AMCA Mk2 with indigenous high-thrust engine starts 2035.
+                Design-and-development approval dates to March 2024. The current public target is a September 2028 first flight; production quantities and induction dates remain unconfirmed.
               </p>
             </div>
           </div>

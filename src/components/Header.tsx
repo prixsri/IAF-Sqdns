@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Quick Scenario Preset Dropdown & Settings Button */}
           <div className="flex items-center gap-2 flex-wrap">
-            <div className="flex items-center bg-slate-950/80 rounded-lg p-1 border border-slate-800 text-xs">
+            <div className="flex min-w-0 max-w-full items-center bg-slate-950/80 rounded-lg p-1 border border-slate-800 text-xs">
               <span className="text-slate-400 px-2 font-medium flex items-center gap-1">
                 <Terminal className="w-3.5 h-3.5 text-cyan-400" />
                 Scenario:
@@ -78,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({
               <select
                 value={selectedPresetId}
                 onChange={(e) => handleSelectPreset(e.target.value)}
-                className="bg-slate-900 text-cyan-300 font-medium px-2 py-1 rounded border border-slate-700/80 focus:outline-none focus:border-cyan-500 text-xs"
+                className="min-w-0 max-w-full bg-slate-900 text-cyan-300 font-medium px-2 py-1 rounded border border-slate-700/80 focus:outline-none focus:border-cyan-500 text-xs"
               >
                 {SCENARIO_PRESETS.map((p) => (
                   <option key={p.id} value={p.id}>
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex space-x-1 overflow-x-auto py-2 scrollbar-none">
+        <div className="flex min-w-0 max-w-full space-x-1 overflow-x-auto py-2 scrollbar-none">
           {tabs.map((tab) => {
             const isActive = currentTab === tab.id;
             return (
