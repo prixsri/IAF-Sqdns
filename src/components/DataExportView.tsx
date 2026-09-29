@@ -101,6 +101,10 @@ export const DataExportView: React.FC<DataExportViewProps> = ({ simulationData, 
           <p className="text-xs text-slate-400 mt-1">
             Export granular projection datasets to CSV or print the formal IAF Force Structure assessment.
           </p>
+          <p className="text-[11px] text-amber-300/80 mt-2">
+            Model inputs use an open-source snapshot through 29 Sep 2026. Inventory counts may be estimates;
+            projections are scenarios, not official forecasts.
+          </p>
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
@@ -196,13 +200,13 @@ export const DataExportView: React.FC<DataExportViewProps> = ({ simulationData, 
               <strong>The 2028–2031 Vulnerability Trough:</strong> Phased retirement of SEPECAT Jaguar and MiG-29 UPG creates a critical force depression where IAF strength dips to ~{minSqdn} squadrons. This leaves India vulnerable in a simultaneous two-front deterrence scenario unless Tejas Mk1A induction accelerates to 24+ units/year without delay.
             </li>
             <li>
-              <strong>GE F-404 Engine Bottleneck Sensitivity:</strong> A delay of even 12 to 18 months in GE F-404-IN20 engine deliveries compounds the trough, creating up to 16 un-engined "gliders" at HAL hangars and postponing squadron rejuvenation past 2030.
+              <strong>GE F-404 Engine Bottleneck Sensitivity:</strong> A delay of even 12 to 18 months in GE F-404-IN20 engine deliveries compounds the trough; the model exposes the full un-engined airframe backlog rather than capping it at an arbitrary display limit.
             </li>
             <li>
-              <strong>Impact of the 114 MRFA Decision:</strong> Procuring 114 Rafales provides an immediate infusion of 18 fly-away jets in 2030 and 96 Make-in-India units through 2038, accounting for ~6.3 vital squadrons that stabilize the medium combat tier.
+              <strong>Impact of the 114 MRFA Decision:</strong> The 114-aircraft Rafale MRFA package remains a proposal/negotiation in public reporting. Any fly-away and local-assembly schedule shown here is a configurable what-if assumption, not a confirmed procurement schedule.
             </li>
             <li>
-              <strong>AMCA Stealth Transition:</strong> The 84-month development clock following the October 2026 DCPP decision enables AMCA Mk1 Lead-in Series Production from 2032, paving the way for 120 indigenous Mk2 units from 2035.
+              <strong>AMCA Stealth Transition:</strong> AMCA design-and-development approval dates to March 2024, with a reported September 2028 first-flight target. Production quantities and operational induction dates remain unconfirmed and are modeled as scenarios.
             </li>
           </ul>
         </div>

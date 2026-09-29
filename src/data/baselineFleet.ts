@@ -11,7 +11,7 @@ export const BASELINE_FLEET: AircraftSpec[] = [
     manufacturer: 'HAL (licensed from Sukhoi / UAC)',
     origin: 'Russia / India (Nashik Line)',
     firstInducted: 2002,
-    currentAirframes: 260,
+    currentAirframes: 266,
     currentSquadrons: 14,
     airframesPerSquadron: 18,
     engineType: '2x Saturn AL-31FP (2D Thrust Vectoring)',
@@ -277,7 +277,7 @@ export const BASELINE_FLEET: AircraftSpec[] = [
     manufacturer: 'Hindustan Aeronautics Limited (HAL)',
     origin: 'India',
     firstInducted: 2022,
-    currentAirframes: 15,
+    currentAirframes: 10,
     currentSquadrons: 1,
     airframesPerSquadron: 15,
     engineType: '2x HAL/Safran Shakti-1H1 turboshaft',
@@ -350,7 +350,7 @@ export const BASELINE_FLEET: AircraftSpec[] = [
     manufacturer: 'Hindustan Aeronautics Limited (HAL)',
     origin: 'India',
     firstInducted: 2002,
-    currentAirframes: 110,
+    currentAirframes: 75,
     currentSquadrons: 7,
     airframesPerSquadron: 16,
     engineType: '2x HAL/Turbomeca Shakti turboshaft',
@@ -402,7 +402,7 @@ export const BASELINE_FLEET: AircraftSpec[] = [
     manufacturer: 'General Atomics (San Diego, CA)',
     origin: 'USA',
     firstInducted: 2025,
-    currentAirframes: 2, // leased initial + 8 dedicated IAF airframes approved under 31 tri-service deal
+    currentAirframes: 0,
     currentSquadrons: 1,
     airframesPerSquadron: 8,
     engineType: 'Honeywell TPE331-10 Turboprop',
@@ -442,3 +442,63 @@ export const BASELINE_FLEET: AircraftSpec[] = [
     silhouette: '🎯'
   }
 ];
+
+const INVENTORY_SOURCES = {
+  flightGlobal2025: {
+    inventoryStatus: "estimate" as const,
+    countConfidence: "medium" as const,
+    sourceDate: "2024-11-21",
+    sourceUrl: "https://www.flightglobal.com/defence/2024/11/2025-world-air-forces-directory/",
+  },
+  hindu2025: {
+    inventoryStatus: "confirmed" as const,
+    countConfidence: "high" as const,
+    sourceDate: "2025-10-20",
+    sourceUrl: "https://www.thehindu.com/news/national/indias-jet-lagged-fighter-fleet/article70178730.ece",
+  },
+  newIndianExpress2026: {
+    inventoryStatus: "confirmed" as const,
+    countConfidence: "high" as const,
+    sourceDate: "2026-06-25",
+    sourceUrl: "https://www.newindianexpress.com/india/2026/Jun/25/after-20-year-wait-netra-aewc-finally-cleared-for-full-combat-role",
+  },
+  mq9b2024: {
+    inventoryStatus: "future-allocation" as const,
+    countConfidence: "high" as const,
+    sourceDate: "2024-10-17",
+    sourceUrl: "https://www.thehindu.com/news/national/india-to-induct-mq-9b-armed-uavs-by-2030/article68767509.ece",
+  },
+  undisclosed: {
+    inventoryStatus: "undisclosed" as const,
+    countConfidence: "low" as const,
+    sourceDate: "2026-09-29",
+  },
+};
+
+const INVENTORY_METADATA: Record<string, AircraftSpec> = {
+  su30mki: { ...BASELINE_FLEET[0], ...INVENTORY_SOURCES.flightGlobal2025, sourceNote: "About 266 in inventory; serviceability is not publicly disclosed." },
+  rafale: { ...BASELINE_FLEET[1], ...INVENTORY_SOURCES.hindu2025, sourceNote: "36 inducted; this is a fleet count, not a mission-ready count." },
+  mirage2000: { ...BASELINE_FLEET[2], ...INVENTORY_SOURCES.flightGlobal2025, sourceNote: "Public sources provide an estimate of roughly 45–50 current aircraft." },
+  mig29: { ...BASELINE_FLEET[3], ...INVENTORY_SOURCES.flightGlobal2025, sourceNote: "Public sources provide an estimate of roughly 55–65 current aircraft." },
+  jaguar: { ...BASELINE_FLEET[4], ...INVENTORY_SOURCES.flightGlobal2025, sourceNote: "Public sources provide an estimate of roughly 100–120 current aircraft." },
+  tejas_mk1: { ...BASELINE_FLEET[5], inventoryStatus: "confirmed", countConfidence: "high", sourceDate: "2026-09-15", sourceUrl: "https://www.newindianexpress.com/india/2026/Sep/15/hal-set-to-wrap-up-original-tejas-order-mk-1a-deliveries-yet-to-begin", sourceNote: "32 single-seat fighters delivered; remaining original-order trainers are separate." },
+  a50ei_phalcon: { ...BASELINE_FLEET[6], ...INVENTORY_SOURCES.newIndianExpress2026, sourceNote: "Three aircraft in the IAF fleet." },
+  drdo_netra_mk1: { ...BASELINE_FLEET[7], ...INVENTORY_SOURCES.newIndianExpress2026, sourceNote: "Three Mk1 aircraft in service; follow-on aircraft are not counted here." },
+  il78mki: { ...BASELINE_FLEET[8], ...INVENTORY_SOURCES.newIndianExpress2026, sourceNote: "Six aircraft in the fleet; availability varies with maintenance." },
+  ah64e_apache: { ...BASELINE_FLEET[9], inventoryStatus: "confirmed", countConfidence: "high", sourceDate: "2020-07-10", sourceUrl: "https://www.boeing.co.in/news/2020/boeing-completes-helicopter-deliveries-to-the-indian-air-force", sourceNote: "22 delivered to the IAF." },
+  hal_prachanda_lch: { ...BASELINE_FLEET[10], inventoryStatus: "confirmed", countConfidence: "medium", sourceDate: "2022-10-03", sourceUrl: "https://pib.gov.in/PressReleasePage.aspx?PRID=1864843", sourceNote: "10 IAF aircraft from the initial order; later 66-aircraft allocation is future procurement." },
+  ch47f_chinook: { ...BASELINE_FLEET[11], inventoryStatus: "confirmed", countConfidence: "high", sourceDate: "2020-07-10", sourceUrl: "https://www.boeing.co.in/news/2020/boeing-completes-helicopter-deliveries-to-the-indian-air-force", sourceNote: "15 delivered to the IAF." },
+  mi17v5: { ...BASELINE_FLEET[12], inventoryStatus: "estimate", countConfidence: "medium", sourceDate: "2026-09-29", sourceUrl: "https://indianairforce.nic.in/Resources/pdf/indigenisation/IAF-COMPENDIUM-ON-INTERNET-WEBSITE.pdf", sourceNote: "The IAF states it operates more than 200 Mi-17-family helicopters; exact current count is not published." },
+  hal_dhruv: { ...BASELINE_FLEET[13], inventoryStatus: "estimate", countConfidence: "medium", sourceDate: "2025-07-24", sourceUrl: "https://www.indiatoday.in/india/story/full-clearance-for-dhruv-helicopter-fleet-pending-amid-ongoing-review-2760629-2025-07-24", sourceNote: "About 75 assigned to the IAF; all-service fleet totals should not be attributed to the IAF." },
+  iai_heron_mk2: { ...BASELINE_FLEET[14], ...INVENTORY_SOURCES.undisclosed, sourceNote: "The IAF operates Heron Mk II and ordered additional aircraft, but a current IAF-specific count is not public." },
+  mq9b_skyguardian: { ...BASELINE_FLEET[15], ...INVENTORY_SOURCES.mq9b2024, sourceNote: "No IAF-owned aircraft delivered by the cutoff; eight of the 31 purchased aircraft are allocated to the IAF for delivery in 2029–30. Leased Navy aircraft are excluded." },
+  iai_harop: { ...BASELINE_FLEET[16], ...INVENTORY_SOURCES.undisclosed, sourceNote: "About 110 was reported historically, but a current operational count is not verifiable." },
+};
+
+export const BASELINE_FLEET_WITH_SOURCES = BASELINE_FLEET.map((aircraft) =>
+  INVENTORY_METADATA[aircraft.id] ?? {
+    ...aircraft,
+    ...INVENTORY_SOURCES.undisclosed,
+    sourceNote: "Current IAF-specific count is not fully disclosed in public sources.",
+  }
+);

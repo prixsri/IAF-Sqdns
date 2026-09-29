@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { SimulationConfig } from '../types/fleet';
 import { X, Sliders, RotateCcw, Check, Shield, Factory, Clock } from 'lucide-react';
 
@@ -17,21 +17,66 @@ export const ConfigModal: React.FC<ConfigModalProps> = ({
   setConfig,
   onResetToDefault,
 }) => {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousActiveElement = document.activeElement as HTMLElement | null;
+    closeButtonRef.current?.focus();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (event.key === 'Tab' && dialogRef.current) {
+        const focusableElements = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button, select, input, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusableElements.length === 0) return;
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      previousActiveElement?.focus();
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div
+        ref={dialogRef}
+        className="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="simulation-config-title"
+      >
         {/* Header */}
         <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
           <div className="flex items-center gap-2">
             <Sliders className="w-5 h-5 text-cyan-400" />
-            <h3 className="text-base font-bold text-white uppercase tracking-wider">
+            <h3 id="simulation-config-title" className="text-base font-bold text-white uppercase tracking-wider">
               Simulation Parameters & Wargame Assumptions
             </h3>
           </div>
           <button
             onClick={onClose}
+            ref={closeButtonRef}
+            type="button"
+            aria-label="Close simulation parameters"
             className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -168,9 +213,9 @@ export const ConfigModal: React.FC<ConfigModalProps> = ({
                   onChange={(e) => setConfig({ ...config, tejasMk2StartYear: parseInt(e.target.value, 10) })}
                   className="w-full bg-slate-900 border border-slate-700 text-cyan-300 px-2.5 py-1.5 rounded"
                 >
-                  <option value={2029}>2029 (Expedited)</option>
-                  <option value={2030}>2030 (Sept 2030 Target)</option>
-                  <option value={2032}>2032 (Delayed Rollout)</option>
+                  <option value={2030}>2030 (Aggressive planning case)</option>
+                  <option value={2032}>2032 (Conservative planning case)</option>
+                  <option value={2035}>2035 (Delayed planning case)</option>
                 </select>
               </div>
 
@@ -181,9 +226,9 @@ export const ConfigModal: React.FC<ConfigModalProps> = ({
                   onChange={(e) => setConfig({ ...config, amcaMk1StartYear: parseInt(e.target.value, 10) })}
                   className="w-full bg-slate-900 border border-slate-700 text-cyan-300 px-2.5 py-1.5 rounded"
                 >
-                  <option value={2031}>2031 (Aggressive Flight Test)</option>
-                  <option value={2032}>2032 (Target 16/yr LSP)</option>
-                  <option value={2034}>2034 (Delayed Certification)</option>
+                  <option value={2032}>2032 (Aggressive production case)</option>
+                  <option value={2035}>2035 (Planning case)</option>
+                  <option value={2038}>2038 (Delayed production case)</option>
                 </select>
               </div>
             </div>

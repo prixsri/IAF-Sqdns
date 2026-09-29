@@ -34,29 +34,28 @@ The simulation engine must dynamically calculate active squadron numbers and tot
 
 ### A. Tejas Mk1-A & Mk2 Transition
 
-* **Mk1-A Inductions:** Deliveries scale up starting **December 2026**.
+* **Mk1-A Inductions:** December 2026 is a configurable forecast; September 2026 reporting said original-order handovers remained delayed.
 * **Tejas Mk2 Rollout & GE-F414 Deal:**
-* Rollout projected for **March 2027**, alongside the signing of a GE F-414-IN engine deal featuring a supply rate of **2 engines per month**.
-* First Mk2 induction out of the 120 planned units begins in **September 2030**.
+* Current public target is a **September 2027 prototype first flight**. The GE-HAL production arrangement is based on a 2023 MoU, not a confirmed 2027 contract.
+* Series production and induction dates for the 120-unit planning case remain unconfirmed and configurable.
 * **Line Capacity Trade-off:** When Tejas Mk2 enters production, the Tejas Mk1 production line scales down to **16 units/year**.
 
 ### B. Rafale Procurement (114 MRFA)
 
-* **Deal Milestone:** Assumed signed before **March 2027**.
-* **Delivery Schedule:** First lot of **18 jets** arrives in fly-away condition in **2030**. Indian-assembled jets follow starting **2031** at a sustained rate of **12 units/year**.
+* **Deal Milestone:** The 114-aircraft package remains proposed/under negotiation; no final contract or delivery schedule is publicly confirmed.
+* **Delivery Schedule:** Fly-away and Indian-assembly quantities are configurable what-if assumptions.
 
-### C. AMCA Program (DCPP & Production)
+### C. AMCA Program (Development & Production)
 
-* **Milestone Start:** AMCA DCPP decision finalized in **October 2026**.
-* **Development Phase:** Add an 84-month timeline for 5 prototype tests to complete.
+* **Milestone Start:** AMCA design-and-development approval was granted in **March 2024**; the current public first-flight target is **September 2028**.
+* **Development Phase:** Five flying prototypes plus one structural-test aircraft are planned; the development schedule remains subject to programme execution.
 * **Production Schedule:**
-* **40 AMCA Mk1 LSP** production starts in **2032** at **16 units/year**.
-* Remaining **120 units** production initiates in **2035**.
+* Production quantities and operational induction dates remain unconfirmed; any Mk1/Mk2 rates are scenario assumptions.
 
 ### D. Ghatak UCAV & Other Additions
 
-* **Ghatak UCAV:** Induction of **60 units** begins in **2030** at a rate of **16 units/year**.
-* **Su-30MKI Additions:** Delivery of an additional **12 Su-30MKI** units in **2027**.
+* **Ghatak UCAV:** SWiFT is a technology demonstrator; a 2026 remotely piloted strike-aircraft AoN does not confirm Ghatak quantity or induction date.
+* **Su-30MKI Additions:** 12 aircraft are contracted; first delivery is targeted for FY 2027–28 and completion is reportedly targeted by 2029.
 
 ### E. Legacy Fleet Retirements
 

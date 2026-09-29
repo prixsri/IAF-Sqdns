@@ -60,11 +60,11 @@ export const HISTORICAL_AND_COMMITTED_DELIVERIES: EngineDeliveryLog[] = [
 ];
 
 export const GE_F414_PROGRAM_PARAMS = {
-  contractSignTarget: 'March 2027',
+  contractSignTarget: 'June 2023 MoU; production contract unconfirmed',
   supplyRateMonthly: 2, // 2 engines per month
-  supplyRateAnnual: 24, // 24 engines per year
-  totPercentage: 80, // 80% Technology Transfer to HAL
-  targetAirframe: 'Tejas Mk2 (MWF) & AMCA Mk1 (initial batches)',
+  supplyRateAnnual: 24, // reported planning cadence, not delivered output
+  totPercentage: '80% reported target; not a completed production agreement',
+  targetAirframe: 'Tejas Mk2; AMCA application remains unconfirmed',
   thrustRatingKN: 98, // 98 kN afterburning thrust
-  status: 'Inter-governmental negotiation & technical specs finalized'
+  status: 'MoU / planning stage; no delivered F414 engines reported'
 };

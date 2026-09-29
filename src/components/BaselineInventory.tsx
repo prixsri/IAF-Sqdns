@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BASELINE_FLEET } from '../data/baselineFleet';
+import { BASELINE_FLEET_WITH_SOURCES } from '../data/baselineFleet';
 import { AircraftSpec, FleetCategory } from '../types/fleet';
 import { Search, Shield, Crosshair, ChevronRight, MapPin, X } from 'lucide-react';
 
@@ -8,7 +8,7 @@ export const BaselineInventory: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedAircraft, setSelectedAircraft] = useState<AircraftSpec | null>(null);
 
-  const filteredFleet = BASELINE_FLEET.filter((item) => {
+  const filteredFleet = BASELINE_FLEET_WITH_SOURCES.filter((item) => {
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
     const matchesSearch =
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -24,11 +24,11 @@ export const BaselineInventory: React.FC = () => {
   });
 
   const categoryCounts = {
-    all: BASELINE_FLEET.length,
-    kinetic: BASELINE_FLEET.filter(a => a.category === 'kinetic').length,
-    multiplier: BASELINE_FLEET.filter(a => a.category === 'multiplier').length,
-    rotary: BASELINE_FLEET.filter(a => a.category === 'rotary').length,
-    unmanned: BASELINE_FLEET.filter(a => a.category === 'unmanned').length,
+    all: BASELINE_FLEET_WITH_SOURCES.length,
+    kinetic: BASELINE_FLEET_WITH_SOURCES.filter(a => a.category === 'kinetic').length,
+    multiplier: BASELINE_FLEET_WITH_SOURCES.filter(a => a.category === 'multiplier').length,
+    rotary: BASELINE_FLEET_WITH_SOURCES.filter(a => a.category === 'rotary').length,
+    unmanned: BASELINE_FLEET_WITH_SOURCES.filter(a => a.category === 'unmanned').length,
   };
 
   return (
@@ -43,6 +43,10 @@ export const BaselineInventory: React.FC = () => {
             </h2>
             <p className="text-xs text-slate-400 mt-1">
               Comprehensive registry of active combat airframes, force multipliers, rotary wing, and unmanned aerial assets.
+            </p>
+            <p className="text-[11px] text-amber-300/80 mt-2 max-w-3xl">
+              Open-source snapshot through 29 Sep 2026. “Confirmed” means publicly reported IAF holdings;
+              estimates, undisclosed counts, and future allocations are labeled and are not mission-ready totals.
             </p>
           </div>
 
@@ -90,10 +94,12 @@ export const BaselineInventory: React.FC = () => {
       {/* Grid of Aircraft Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredFleet.map((aircraft) => (
-          <div
+          <button
             key={aircraft.id}
             onClick={() => setSelectedAircraft(aircraft)}
-            className="bg-slate-900/90 border border-slate-800 rounded-xl p-5 hover:border-cyan-500/50 transition-all cursor-pointer group shadow-lg flex flex-col justify-between hover:shadow-cyan-950/20 backdrop-blur-md"
+            type="button"
+            aria-label={`View details for ${aircraft.name}`}
+            className="bg-slate-900/90 border border-slate-800 rounded-xl p-5 hover:border-cyan-500/50 transition-all cursor-pointer group shadow-lg flex flex-col justify-between hover:shadow-cyan-950/20 backdrop-blur-md text-left"
           >
             <div>
               {/* Card Header */}
@@ -117,7 +123,13 @@ export const BaselineInventory: React.FC = () => {
 
                 <div className="text-right">
                   <div className="text-2xl font-black font-mono text-cyan-400">
-                    {aircraft.currentAirframes}
+                    {aircraft.inventoryStatus === 'undisclosed' ? 'N/D' : aircraft.currentAirframes}
+                  </div>
+                  <div className="text-[10px] text-slate-500 mt-1">
+                    {aircraft.inventoryStatus === 'confirmed' ? 'Confirmed fleet count' :
+                      aircraft.inventoryStatus === 'future-allocation' ? 'Future IAF allocation' :
+                      aircraft.inventoryStatus === 'undisclosed' ? 'Current count not public' :
+                      'Open-source estimate'}
                   </div>
                   <div className="text-[10px] font-mono text-slate-500 uppercase">
                     Airframes
@@ -176,7 +188,7 @@ export const BaselineInventory: React.FC = () => {
                 <ChevronRight className="w-3.5 h-3.5" />
               </span>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 
@@ -217,6 +229,25 @@ export const BaselineInventory: React.FC = () => {
             <p className="text-xs text-slate-300 leading-relaxed mb-5 bg-slate-950/60 p-3 rounded-lg border border-slate-800">
               {selectedAircraft.description}
             </p>
+            <div className="text-[11px] text-slate-400 mb-5 bg-amber-950/20 p-3 rounded-lg border border-amber-900/40">
+              <strong className="text-amber-300">
+                {selectedAircraft.inventoryStatus === 'confirmed' ? 'Confirmed fleet count' :
+                  selectedAircraft.inventoryStatus === 'future-allocation' ? 'Future IAF allocation' :
+                  selectedAircraft.inventoryStatus === 'undisclosed' ? 'Current count not publicly disclosed' :
+                  'Open-source estimate'}
+              </strong>
+              {selectedAircraft.sourceNote && <span> — {selectedAircraft.sourceNote}</span>}
+              {selectedAircraft.sourceUrl && (
+                <a
+                  href={selectedAircraft.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block text-amber-300 hover:text-amber-200 underline mt-1"
+                >
+                  Source ({selectedAircraft.sourceDate})
+                </a>
+              )}
+            </div>
 
             {/* Technical Specifications Matrix */}
             <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 mb-2">
